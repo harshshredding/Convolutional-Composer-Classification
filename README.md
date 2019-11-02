@@ -22,3 +22,5 @@ Now, we will start the jupyter notebook with :
 ```
 (mypy3env)$ jupyter notebook
 ```
+
+When you will run your first model in jupyter notebook, all the music data required for classification will be downloaded to a `./data` folder. This will only happen once; the following runs will used cached data.
