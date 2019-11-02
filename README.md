@@ -28,7 +28,7 @@ When you will run your first model in jupyter notebook, all the music data requi
 
 
 ## Every Model Ever
-All the models start with a preamble like this where we import all the right stuff.
+All models start with a preamble like the following.
 ```
 import os
 import numpy as np
@@ -46,3 +46,7 @@ from lib.CrossValidation import CrossValidator                        # the cros
 from lib.config import corpora_for_classification_all_composers as default_corpora
 import lib.media as media
 ```
+
+
+
+
