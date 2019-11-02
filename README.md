@@ -29,24 +29,44 @@ When you will run your first model in jupyter notebook, all the music data requi
 
 ## Every Model Ever
 All models start with a preamble like the following.
-```
+```python
 import os
 import numpy as np
 
-import torch                                                          # torch stuff
+import torch # torch stuff
 from torch import Tensor
 from torch.nn.parameter import Parameter
 from torch.autograd import Variable
 import torch.nn.functional as F
 
-from lib.dataset_custom import KernDataset,DatasetSplit               # library to access music dataset
-from lib.model import ScoreModel                                      # base model for every model
-from lib.opt import optimize                                          # library to train
-from lib.CrossValidation import CrossValidator                        # the cross validation framework
+from lib.dataset_custom import KernDataset,DatasetSplit # library to access music dataset
+from lib.model import ScoreModel # base model for every model
+from lib.opt import optimize # library to train
+from lib.CrossValidation import CrossValidator # the cross validation framework
 from lib.config import corpora_for_classification_all_composers as default_corpora
 import lib.media as media
 ```
 
+
+
+All models contain a section like the following 
+```python
+import sys
+class MyModel(ScoreModel): # inherit ScoreModel
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+    
+    def define_graph(self, debug=False): # Define learnable parameters      
+        self.w_e = Parameter(Tensor(78, self.composers)) 
+        self.w_t = Parameter(Tensor(55, self.composers))
+        self.bias = Parameter(Tensor(self.composers))
+    
+    def forward(self, x): # Define how to iterate
+        e,t,_,_ = x  # e represents the note values, t represent the note-duration values
+        x_e = e.mean(1).mean(1).mean(1)
+        x_t = t.mean(1).mean(1).mean(1)
+        return torch.mm(x_e, self.w_e) + torch.mm(x_t, self.w_t) + self.bias[None, :].expand(e.shape[0], -1)
+```
 
 
 
