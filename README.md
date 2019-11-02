@@ -24,3 +24,25 @@ Now, we will start the jupyter notebook with :
 ```
 
 When you will run your first model in jupyter notebook, all the music data required for classification will be downloaded to a `./data` folder. This will only happen once; the following runs will used cached data.
+
+
+
+## Every Model Ever
+All the models start with a preamble like this where we import all the right stuff.
+```
+import os
+import numpy as np
+
+import torch                                                          # torch stuff
+from torch import Tensor
+from torch.nn.parameter import Parameter
+from torch.autograd import Variable
+import torch.nn.functional as F
+
+from lib.dataset_custom import KernDataset,DatasetSplit               # library to access music dataset
+from lib.model import ScoreModel                                      # base model for every model
+from lib.opt import optimize                                          # library to train
+from lib.CrossValidation import CrossValidator                        # the cross validation framework
+from lib.config import corpora_for_classification_all_composers as default_corpora
+import lib.media as media
+```
