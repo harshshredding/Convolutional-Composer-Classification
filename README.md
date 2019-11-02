@@ -68,5 +68,10 @@ class MyModel(ScoreModel): # inherit ScoreModel
         return torch.mm(x_e, self.w_e) + torch.mm(x_t, self.w_t) + self.bias[None, :].expand(e.shape[0], -1)
 ```
 
+All models use the cross validation framework which spits out nice confusion matrices and summaries.
+```python
+validator = CrossValidator(Convnet, corpora, is_patches_model=True, patience=50, batch_size=64)
+validator.run(context, checkpoint_dir=checkpoint_dir) # The context represents the size of the samples(in time dimension) that we are feeding into our network.
+```
 
 
