@@ -8,12 +8,12 @@ We can install anaconda FOR PYTHON 3 using link https://www.anaconda.com/distrib
 
 Once anaconda is installed, we can create and enter a python environment like so :
 ```
-$conda create -n mypy3env python=3 
+$ conda create -n mypy3env python=3 
 ```
 
 Then we enter/activiate the environment using
 ```
-$conda activate mypy3env
+$ conda activate mypy3env
 ```
 
 By using a virtual environment, we will make sure that there are no conflicts between the libraries we will use for the project. 
