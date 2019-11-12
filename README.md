@@ -23,7 +23,7 @@ Now, we will start the jupyter notebook with :
 (mypy3env)$ jupyter notebook
 ```
 
-When you will run your first model in jupyter notebook, all the music data required for classification will be downloaded to a `./data` folder. This will only happen once; the following runs will used cached data.
+When you will run your first model in jupyter notebook, all the music data required for classification will be downloaded to a `./data` folder. This will only happen once; the following runs will used cached data. The `lib/config.py` file contains a list of urls of git repos from which data will be downloaded.
 
 
 
